@@ -10,6 +10,10 @@ let package = Package(
     targets: [
         .target(
             name: "JSONValue"
+        ),
+        .testTarget(
+            name: "JSONValueTests",
+            dependencies: ["JSONValue"]
         )
     ]
 )

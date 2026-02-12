@@ -95,10 +95,9 @@ extension JSONValue {
     public var int64: Int64? {
         switch self {
         case .int(let value):
-            return Int64(value)
+            return Int64(exactly: value)
         case .double(let value):
-            guard value.isFinite, value.rounded(.towardZero) == value else { return nil }
-            return Int64(value)
+            return Int64(exactly: value)
         case .string(let value):
             return Int64(value)
         default:
@@ -129,9 +128,7 @@ extension JSONValue {
         case .int(let value):
             return value
         case .double(let value):
-            guard value.isFinite, value.rounded(.towardZero) == value else { return nil }
-            guard value >= Double(Int.min), value <= Double(Int.max) else { return nil }
-            return Int(value)
+            return Int(exactly: value)
         case .string(let value):
             return Int(value)
         default:
